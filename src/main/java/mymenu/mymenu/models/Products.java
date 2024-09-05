@@ -8,13 +8,13 @@ import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "shoppingList")
-public class ShoppingList {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String product;
 
-    public ShoppingList(){
+    public Products(){
 
     }
 
