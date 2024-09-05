@@ -16,7 +16,7 @@ public class MenuService {
     }
 
     public ResponseEntity<Object> createMenu(Menu menu) {
-        menuRepository.save(menu);
-        return new ResponseEntity<>(menu, HttpStatus.CREATED);
+        Menu savedMenu = menuRepository.save(menu);
+        return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
     }
 }

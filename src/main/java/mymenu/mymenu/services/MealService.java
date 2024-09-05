@@ -17,7 +17,7 @@ public class MealService {
     }
 
     public ResponseEntity<Object> createMeal(Meal meal) {
-        mealRepository.save(meal);
-        return new ResponseEntity<>(meal, HttpStatus.CREATED);
+        Meal savedMeal = mealRepository.save(meal);
+        return new ResponseEntity<>(savedMeal, HttpStatus.CREATED);
     }
 }
