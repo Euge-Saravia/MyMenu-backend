@@ -16,7 +16,7 @@ public class PlateService {
     }
 
     public ResponseEntity<Object> createPlate(Plate plate) {
-        plateRepository.save(plate);
-        return new ResponseEntity<>(plate, HttpStatus.CREATED);
+        Plate savedPlate = plateRepository.save(plate);
+        return new ResponseEntity<>(savedPlate, HttpStatus.CREATED);
     }
 }
