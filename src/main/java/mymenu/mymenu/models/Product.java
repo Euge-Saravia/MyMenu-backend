@@ -7,14 +7,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "shoppingList")
-public class Products {
+@Table(name = "products")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String product;
 
-    public Products(){
+    public Product(){
 
     }
 
