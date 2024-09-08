@@ -19,7 +19,7 @@ public class MenuService {
     }
 
     public List<Menu> getMenusByDate(Date starDate, Date enDate){
-        return menuRepository.findByDateBetween(starDate, enDate);
+        return menuRepository.findByDateBetweenOrderByDate(starDate, enDate);
     }
 
     public ResponseEntity<Object> createMenu(Menu menu) {
