@@ -1,5 +1,8 @@
 package mymenu.mymenu.services;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,10 @@ public class MenuService {
 
     public MenuService(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
+    }
+
+    public List<Menu> getMenusByDate(Date starDate, Date enDate){
+        return menuRepository.findByDateBetween(starDate, enDate);
     }
 
     public ResponseEntity<Object> createMenu(Menu menu) {
