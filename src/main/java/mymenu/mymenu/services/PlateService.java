@@ -1,5 +1,7 @@
 package mymenu.mymenu.services;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,10 @@ public class PlateService {
 
     public PlateService(PlateRepository plateRepository) {
         this.plateRepository = plateRepository;
+    }
+
+    public List<Plate> getPlates(){
+        return plateRepository.findAll();
     }
 
     public ResponseEntity<Object> createPlate(Plate plate) {

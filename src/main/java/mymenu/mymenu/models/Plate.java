@@ -2,6 +2,8 @@ package mymenu.mymenu.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -19,6 +21,7 @@ public class Plate {
     private String description;
 
     @OneToMany(mappedBy = "plate")  // Relación OneToMany con Menu
+    @JsonIgnore
     private List<Menu> menus;
 
     private Plate(){
