@@ -2,20 +2,26 @@ package mymenu.mymenu.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name="menu")
+@Table(name = "menu")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
     @ManyToOne
@@ -26,10 +32,9 @@ public class Menu {
     @JoinColumn(name = "meal_id")
     private Meal meal;
 
-    private Menu(){
+    private Menu() {
 
     }
-
 
     public int getId() {
         return this.id;
@@ -62,6 +67,5 @@ public class Menu {
     public void setMeal(Meal meal) {
         this.meal = meal;
     }
-
 
 }

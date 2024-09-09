@@ -26,4 +26,8 @@ public class MenuService {
         Menu savedMenu = menuRepository.save(menu);
         return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
     }
+
+    public List<Menu> getMenuByOneDate(Date date, Integer mealType){
+        return menuRepository.findByDateAndMeal_Id(date, mealType);
+    }
 }

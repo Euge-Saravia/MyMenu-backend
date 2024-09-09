@@ -29,11 +29,15 @@ public class MenuController {
         return menuService.getMenusByDate(starDate, enDate);
     }
     
-    
-
     @PostMapping("/menus")
    public ResponseEntity<Object> createMenu(@RequestBody Menu menu){
     return menuService.createMenu(menu);
    }
+
+   @GetMapping("/menu")
+   public List<Menu> getMenuByDateAndMeal(@RequestParam Date date, @RequestParam Integer mealType) {
+       return menuService.getMenuByOneDate(date, mealType);
+   }
+   
     
 }
