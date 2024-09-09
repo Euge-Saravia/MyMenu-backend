@@ -24,6 +24,4 @@ public ResponseEntity<Object> createMeal(@RequestBody Meal meal){
     return mealService.createMeal(meal);
 }
 
-
-
 }

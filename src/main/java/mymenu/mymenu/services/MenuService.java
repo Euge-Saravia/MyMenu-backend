@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import mymenu.mymenu.models.Menu;
+import mymenu.mymenu.models.Plate;
 import mymenu.mymenu.repositories.MenuRepository;
 
 @Service
@@ -26,4 +27,16 @@ public class MenuService {
         Menu savedMenu = menuRepository.save(menu);
         return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
     }
+
+    public ResponseEntity<Object> addPlateToMenu(int menuId, Plate plate) {
+    Menu menu = menuRepository.findById(menuId).orElse(null);
+    if (menu != null) {
+        menu.setPlate(plate);
+        menuRepository.save(menu);
+        return new ResponseEntity<>(menu, HttpStatus.OK);
+    } else {
+        return new ResponseEntity<>("Menu not found", HttpStatus.NOT_FOUND);
+    }
+}
+
 }
