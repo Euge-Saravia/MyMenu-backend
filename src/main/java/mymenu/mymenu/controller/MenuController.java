@@ -32,8 +32,29 @@ public class MenuController {
     
 
     @PostMapping("/menus")
+<<<<<<< Updated upstream
    public ResponseEntity<Object> createMenu(@RequestBody Menu menu){
     return menuService.createMenu(menu);
    }
     
+=======
+    public ResponseEntity<Object> createMenu(@RequestBody Menu menu) {
+        return menuService.createMenu(menu);
+    }
+
+    @PostMapping("/menus/{menuId}/addPlate")
+    public ResponseEntity<Object> addPlateToMenu(@PathVariable int menuId, @RequestBody Plate plate) {
+        return menuService.addPlateToMenu(menuId, plate);
+    }
+
+      // Endpoint para obtener un menú por fecha y tipo de comida
+      @GetMapping("/menu")
+      public ResponseEntity<Object> getMenuByDateAndMeal(
+          @RequestParam Date date,
+          @RequestParam String mealType
+      ) {
+          return menuService.getMenuByDateAndMeal(date, mealType);
+      }
+
+>>>>>>> Stashed changes
 }
