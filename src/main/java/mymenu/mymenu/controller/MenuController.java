@@ -4,8 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mymenu.mymenu.models.Menu;
 import mymenu.mymenu.services.MenuService;
-
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class MenuController {
     }
 
     @GetMapping("/menus")
-    public List<Menu> getMenusByDate(@RequestParam Date starDate,@RequestParam Date enDate) {
+    public List<Menu> getMenusByDate(@RequestParam LocalDate starDate,@RequestParam LocalDate enDate) {
         return menuService.getMenusByDate(starDate, enDate);
     }
     
@@ -35,7 +34,7 @@ public class MenuController {
    }
 
    @GetMapping("/menu")
-   public List<Menu> getMenuByDateAndMeal(@RequestParam Date date, @RequestParam Integer mealType) {
+   public List<Menu> getMenuByDateAndMeal(@RequestParam LocalDate date, @RequestParam Integer mealType) {
        return menuService.getMenuByOneDate(date, mealType);
    }
    
