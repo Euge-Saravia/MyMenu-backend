@@ -27,7 +27,7 @@ public class PlateService {
         return new ResponseEntity<>(savedPlate, HttpStatus.CREATED);
     }
 
-    // Método para actualizar un plato existente
+    // Método para editar un plato existente
     public ResponseEntity<Object> updatePlate(int id, Plate updatedPlate) {
         Optional<Plate> plateOptional = plateRepository.findById(id);
 
@@ -38,6 +38,16 @@ public class PlateService {
             return new ResponseEntity<>(savedPlate, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Plate not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<Object> deletePlate(int id){
+         Optional<Plate> optionalPlate = plateRepository.findById(id);
+        if (optionalPlate.isPresent()) {
+            plateRepository.delete(optionalPlate.get());
+            return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
         }
     }
 }
