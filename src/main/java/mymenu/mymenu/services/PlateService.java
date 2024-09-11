@@ -41,13 +41,5 @@ public class PlateService {
         }
     }
 
-    public ResponseEntity<Object> deletePlate(int id){
-         Optional<Plate> optionalPlate = plateRepository.findById(id);
-        if (optionalPlate.isPresent()) {
-            plateRepository.delete(optionalPlate.get());
-            return new ResponseEntity<>("Product deleted successfully", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
-        }
-    }
+   
 }

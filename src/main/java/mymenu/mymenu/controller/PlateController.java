@@ -42,9 +42,6 @@ public class PlateController {
         return plateService.updatePlate(id, updatedPlate);
     }
 
-    @DeleteMapping("/plates/{id}")
-    public ResponseEntity<Object> deletePlate(@PathVariable int id){
-        return plateService.deletePlate(id);
-    }
+   
     
 }
