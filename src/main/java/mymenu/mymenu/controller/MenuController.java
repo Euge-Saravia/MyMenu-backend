@@ -10,7 +10,9 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -37,6 +39,11 @@ public class MenuController {
    public List<Menu> getMenuByDateAndMeal(@RequestParam LocalDate date, @RequestParam Integer mealType) {
        return menuService.getMenuByOneDate(date, mealType);
    }
+
+   @DeleteMapping("/menu/{id}")
+    public ResponseEntity<Object> deleteMenuById(@PathVariable int id) {
+        return menuService.deleteMenuById(id);
+    }
    
     
 }

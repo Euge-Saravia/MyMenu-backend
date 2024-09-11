@@ -1,6 +1,7 @@
 package mymenu.mymenu.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,14 @@ public class MenuService {
 
     public List<Menu> getMenuByOneDate(LocalDate date, Integer mealType) {
         return menuRepository.findByDateAndMeal_Id(date, mealType);
+    }
+
+    public ResponseEntity<Object> deleteMenuById(int id) {
+        if (menuRepository.existsById(id)) {
+            menuRepository.deleteById(id);
+            return new ResponseEntity<>("Menu deleted successfully", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Menu not found", HttpStatus.NOT_FOUND);
+        }
     }
 }
