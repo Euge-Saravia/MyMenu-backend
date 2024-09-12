@@ -1,9 +1,8 @@
 package mymenu.mymenu.models;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import java.time.LocalDate;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,15 +12,16 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name="menu")
+@Table(name = "menu")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    private LocalDate date;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //Te crea entidades anidadas en la BD, osea si no hay un plate por ej te lo crea
     @JoinColumn(name = "plate_id")
     private Plate plate;
 
@@ -29,10 +29,9 @@ public class Menu {
     @JoinColumn(name = "meal_id")
     private Meal meal;
 
-    private Menu(){
+    private Menu() {
 
     }
-
 
     public int getId() {
         return this.id;
@@ -42,11 +41,11 @@ public class Menu {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -66,5 +65,8 @@ public class Menu {
         this.meal = meal;
     }
 
+    public Boolean hasPlateId(){
+        return this.plate.getId() != 0;
+    }
 
 }

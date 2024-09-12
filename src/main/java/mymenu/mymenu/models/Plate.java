@@ -2,10 +2,11 @@ package mymenu.mymenu.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Plate {
     private String description;
 
     @OneToMany(mappedBy = "plate")  // Relación OneToMany con Menu
+    @JsonIgnore
     private List<Menu> menus;
 
     private Plate(){
