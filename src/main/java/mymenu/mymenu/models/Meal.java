@@ -19,7 +19,7 @@ public class Meal {
     private int id;
     private String type;
 
-    @OneToMany(mappedBy = "meal")  // Relación OneToMany con Menu
+    @OneToMany(mappedBy = "meal") 
     @JsonIgnore
     private List<Menu> menus;
 

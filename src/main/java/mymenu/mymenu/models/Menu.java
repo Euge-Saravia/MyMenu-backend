@@ -21,7 +21,7 @@ public class Menu {
     private LocalDate date;
 
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //Te crea entidades anidadas en la BD, osea si no hay un plate por ej te lo crea
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) 
     @JoinColumn(name = "plate_id")
     private Plate plate;
 

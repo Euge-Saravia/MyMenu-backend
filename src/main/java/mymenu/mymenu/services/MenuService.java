@@ -12,12 +12,10 @@ import mymenu.mymenu.models.Plate;
 import mymenu.mymenu.repositories.MenuRepository;
 import mymenu.mymenu.repositories.PlateRepository;
 
-
 @Service
 public class MenuService {
     private MenuRepository menuRepository;
-   private PlateRepository plateRepository;
-   
+    private PlateRepository plateRepository;
 
     public MenuService(MenuRepository menuRepository, PlateRepository plateRepository) {
         this.menuRepository = menuRepository;
@@ -28,33 +26,18 @@ public class MenuService {
         return menuRepository.findByDateBetweenOrderByDate(starDate, enDate);
     }
 
-    // public ResponseEntity<Object> createMenu(Menu menu) {
-    //     Menu savedMenu = menuRepository.save(menu);
-    //     return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
-    // }
-
     public ResponseEntity<Object> createMenu(Menu menu) {
-    // Verifica si el plate tiene un ID
-    if (menu.getPlate().getId() != 0) {
-        // Busca el plate en la base de datos
-        Optional<Plate> plateOpt = plateRepository.findById(menu.getPlate().getId());
-        if (plateOpt.isPresent()) {
-            // Si el plate existe, lo asigna al menú
-            menu.setPlate(plateOpt.get());
-        } else {
-            // Si no existe, retorna un error
-            return new ResponseEntity<>("Plate not found", HttpStatus.NOT_FOUND);
+        if (menu.getPlate().getId() != 0) {
+            Optional<Plate> plateOpt = plateRepository.findById(menu.getPlate().getId());
+            if (plateOpt.isPresent()) {
+                menu.setPlate(plateOpt.get());
+            } else {
+                return new ResponseEntity<>("Plate not found", HttpStatus.NOT_FOUND);
+            }
         }
-    } else {
-        // Si no tiene ID, usa CascadeType.PERSIST para crearlo
-        // Esto sigue funcionando gracias a la cascada que tienes en la anotación.
+        Menu savedMenu = menuRepository.save(menu);
+        return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
     }
-
-    // Ahora que hemos asegurado que el Plate existe o se creará, persistimos el Menu
-    Menu savedMenu = menuRepository.save(menu);
-    return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
-}
-
 
     public List<Menu> getMenuByOneDate(LocalDate date, Integer mealType) {
         return menuRepository.findByDateAndMeal_Id(date, mealType);
